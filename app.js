@@ -1,7 +1,18 @@
 const express = require('express');
+const morgan = require('morgan');
+const mongoose = require('mongoose');
+const Blog = require('./models/blog');
 
 // express app
 const app = express();
+
+// connect to mongodb & listen for requests
+const dbURI = "mongodb+srv://admin:admin%40123@cluster0.prxlhlr.mongodb.net/sample_database";
+
+mongoose.connect(dbURI)
+  .then(result => app.listen(4000))
+  .catch(err => console.log(err));
+
 
 // listen for requests
 app.listen(3000);
@@ -24,6 +35,23 @@ app.use((req, res, next) => {
 
 // logging
 app.use(morgan('dev'));
+
+// mongoose & mongo tests
+app.get('/add-blog', (req, res) => {
+    const blog = new Blog({
+      title: 'new blog',
+      snippet: 'about my new blog',
+      body: 'more about my new blog'
+    })
+
+    blog.save()
+      .then(result => {
+        res.send(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+});
 
 
 app.get('/', (req, res) => {
