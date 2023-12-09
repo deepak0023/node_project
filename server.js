@@ -5,7 +5,7 @@ const server = http.createServer((req, res) => {
     // console.log(req.url, req.method);
     res.setHeader('Content-Type', 'text/html');
 
-    let path = './views/';
+    let path = './normal_views/';
     switch(req.url) {
       case '/':
         path += 'index.html';

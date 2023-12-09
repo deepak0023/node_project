@@ -5,7 +5,7 @@ console.log(people, ages);
 console.log(os.platform(), os.homedir());
 
 const speak = () => {
-    console.log('hello, ninjas');
+    console.log('hello, students');
 }
   
 speak();
