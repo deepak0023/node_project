@@ -10,6 +10,22 @@ app.listen(3000);
 app.set('view engine', 'ejs');
 // app.set('views', 'myviews');
 
+// middleware & static files
+app.use(express.static('public'));
+
+// Sample values that can be got for each request in middleware
+app.use((req, res, next) => {
+    console.log('new request made:');
+    console.log('host: ', req.hostname);
+    console.log('path: ', req.path);
+    console.log('method: ', req.method);
+    next();
+});
+
+// logging
+app.use(morgan('dev'));
+
+
 app.get('/', (req, res) => {
   // res.send('<p>home page</p>');
   const blogs = [
