@@ -1,4 +1,4 @@
-const { people, ages } = require('./people');
+const { people, ages } = require('./Test/people');
 const os = require('os');
 
 console.log(people, ages);
